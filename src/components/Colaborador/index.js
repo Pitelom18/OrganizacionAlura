@@ -1,15 +1,18 @@
 import "./colaborador.css"
 
 const Colaborador = (props) => {
+
+    //Destructuracion de props
+    const {nombre, puesto, foto} = props;
+    const {colorPrimario} = props;
 return(
     <div className="colaborador">
-        <div className="encabezado">
-            <img src="https://avatars.githubusercontent.com/u/88055463?s=400&u=5cfedef707b3e77d3889b5e0bfd13317ff2d20c9&v=4"  alt="foto natalia"/>
+        <div className="encabezado" style = {{ backgroundColor: colorPrimario}}>
+            <img src={foto} alt={nombre} />
         </div>
         <div className="info">
-            <h4>{ props.nombre }</h4>
-            <h5>{ props.puesto }</h5>
-
+            <h4>{ nombre }</h4>
+            <h5>{ puesto }</h5>
         </div>
     </div>
 

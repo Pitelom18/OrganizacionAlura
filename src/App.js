@@ -7,18 +7,19 @@ import Equipo from './components/Equipo';
 
 function App() {
   const [mostrarFormulario, actualizarMostrarFormulario] = useState(false);
-  // const [colaboradores, actualizarColaboradores] = useState([]);
+  const [colaboradores, actualizarColaboradores] = useState([]); //ya que colaboradores va a estar cambiando se debe usar useState
   
   const cambiarMostrarFormulario = () => {
     actualizarMostrarFormulario(!mostrarFormulario);
   }
 
   //registrar colaborador
- /*  const registrarColaborador = (colaborador) => {
+ const registrarColaborador = (colaborador) => {
     console.log("Nuevo colaborador", colaborador)
-    //Spread operator
-    actualizarColaboradores([...colaboradores, colaborador])
-  } */
+    
+  //Spread operator: copia valores actuales y se agrega un nuevo colaborador
+  actualizarColaboradores([...colaboradores, colaborador])
+} 
 
 
 
@@ -60,13 +61,19 @@ function App() {
     <div >
       
       <Header />
-      {mostrarFormulario ? <Formulario equipos = {equipos.map((equipo) => equipo.titulo)} /> : <></>}      
+      {mostrarFormulario ? <Formulario 
+      registrarColaborador= {registrarColaborador}
+      equipos = {equipos.map((equipo) => equipo.titulo)} /> : <></>}      
       {/* {mostrarFormulario && <Formulario />} */}
       {/* <Formulario /> */}
       <MyOrg cambiarMostrarFormulario={cambiarMostrarFormulario} />
      
      {
-     equipos.map((equipo, index) =>  <Equipo key={index} titulo={equipo.titulo} colorPrimario={equipo.colorPrimario} colorSecundario={equipo.colorSecundario} />)
+     equipos.map((equipo, index) =>  <Equipo key={index} titulo={equipo.titulo} colorPrimario={equipo.colorPrimario} colorSecundario={equipo.colorSecundario} 
+
+     colaboradores = {colaboradores.filter((colaborador) => colaborador.equipo === equipo.titulo)}
+     
+     />)
      }
       
     </div>

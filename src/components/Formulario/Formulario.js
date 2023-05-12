@@ -10,6 +10,8 @@ const Formulario = (props) => {
   const [valorFoto, actualizarValorFoto] = useState("");
   const [valorEquipo, actualizarValorEquipo] = useState("");
 
+  const {registrarColaborador} = props;
+
   const manejarEnvio = (e) => {
     e.preventDefault();
     // console.log("Manejar el envio", e);
@@ -21,7 +23,8 @@ const Formulario = (props) => {
         foto: valorFoto,
         equipo: valorEquipo
     }
-    console.log("Datos a enviar", datosAEnviar);
+    // console.log("Datos a enviar", datosAEnviar);
+    registrarColaborador(datosAEnviar);//enviar datos al padre mediante la funcion registrarColaborador creada en el padre es decir en app.js
 
   };
   return (
