@@ -113,7 +113,7 @@ function App() {
 
   //Actualizar color de equipo
   const actualizarColor = (color, id) => {
-    console.log("Actualizar color", color, id)
+    console.log("Actualizar color :", color, id)
     const equiposActualizados= equipos.map((equipo) => {
       if(equipo.titulo === id){
         equipo.colorPrimario = color
@@ -122,6 +122,15 @@ function App() {
   })
   actualizarEquipos(equiposActualizados)
 }
+
+
+//Crear equipo
+const crearEquipo = (nuevoEquipo) => {
+  console.log( nuevoEquipo)
+  //Spread operator
+  actualizarEquipos([...equipos, { ...nuevoEquipo, id: uuidv4() }])
+}
+
 
   //Lista de equipos
 
@@ -133,6 +142,7 @@ function App() {
         mostrarFormulario && <Formulario
           equipos={equipos.map((equipo) => equipo.titulo)}
           registrarColaborador={registrarColaborador}
+          crearEquipo={crearEquipo}
         />
       }
 
