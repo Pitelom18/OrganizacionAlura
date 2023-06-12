@@ -2,35 +2,39 @@ import "./equipo.css";
 import Colaborador from "../Colaborador";
 
 const Equipo = (props) => {
-  //Destructuracion de props
-  const { colaboradores } = props;
+  //Destructuracion
+  const { colorPrimario, colorSecundario, titulo } = props.datos
+  const { colaboradores, eliminarColaborador } = props
+  const obj = {
+      backgroundColor: colorSecundario
+  }
 
-  return (
-    <>
-      {colaboradores.length > 0 && (
-        <section
-          className="equipo"
-          style={{ backgroundColor: props.colorSecundario }}
-        >
-          <h3 style={{ borderBottomColor: props.colorPrimario }}>
-            <div className="colaboradores">{props.titulo}</div>
-          </h3>
-          <div className="colaboradores">
-            {colaboradores.map((colaborador, index) => (
-              <Colaborador
-                key={index}
-                nombre={colaborador.nombre}
-                puesto={colaborador.puesto}
-                foto={colaborador.foto}
-                colorPrimario={props.colorPrimario}
-                
-              />
-            ))}
-          </div>
-        </section>
-      )}
-    </>
-  );
-};
 
-export default Equipo;
+  const estiloTitulo = { borderColor: colorPrimario }
+
+  return <>
+      {
+          colaboradores.length > 0 &&
+          <section className="equipo" style={obj}>
+            <input type="color"
+                      className="input-color"
+                      value={colorSecundario}
+                      onChange={(e) => console.log(e.target.value)}
+                      id="btn-mostrar" />
+              <h3 style={estiloTitulo} >{titulo}</h3>
+              <div className="colaboradores">
+                  {
+                      colaboradores.map((colaborador, index) => <Colaborador
+                          datos={colaborador}
+                          key={index}
+                          colorPrimario={colorPrimario}
+                          eliminarColaborador={eliminarColaborador}
+                      />)
+                  }
+              </div>
+          </section>
+      }
+  </>
+}
+
+export default Equipo
